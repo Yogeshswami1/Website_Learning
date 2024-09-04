@@ -139,12 +139,10 @@ const Regularupdates = ({ userRole }) => {
   const [showRegisterModal, setShowRegisterModal] = useState(false);
   const [showUpdateModal, setShowUpdateModal] = useState(false);
   const [fileList, setFileList] = useState([]);
-  const backendUrl = process.env.REACT_APP_BACKEND_URL;
-
 
   const handleRegister = async (values) => {
     try {
-      await axios.post(`${backendUrl}/api/register`, values);
+      await axios.post('https://web.api.saumic.com/api/register', values);
       message.success('Registration successful');
       form.resetFields(); // Reset the registration form fields
       setShowRegisterModal(false); // Close the modal after successful registration
@@ -155,7 +153,7 @@ const Regularupdates = ({ userRole }) => {
 
   const handleUpdate = async (values) => {
     try {
-      await axios.post(`${backendUrl}/api/updates`, { ...values, images: fileList });
+      await axios.post('https://web.api.saumic.com/api/updates', { ...values, images: fileList });
       message.success('Update added and emails sent successfully');
       updateForm.resetFields(); // Reset the update form fields
       setShowUpdateModal(false); // Close the modal after successful update
