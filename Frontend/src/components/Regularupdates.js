@@ -124,6 +124,137 @@
 // export default Regularupdates;
 
 
+// import React, { useState } from 'react';
+// import axios from 'axios';
+// import { Modal, Form, Input, Button, message, Upload } from 'antd';
+// import { InboxOutlined } from '@ant-design/icons';
+// import './Regularupdates.css'; // Import your custom CSS
+
+// const { Dragger } = Upload;
+
+// const Regularupdates = ({ userRole }) => {
+//   const [form] = Form.useForm();
+//   const [updateForm] = Form.useForm();
+//   const [updateMessage, setUpdateMessage] = useState('');
+//   const [showRegisterModal, setShowRegisterModal] = useState(false);
+//   const [showUpdateModal, setShowUpdateModal] = useState(false);
+//   const [fileList, setFileList] = useState([]);
+
+//   const handleRegister = async (values) => {
+//     try {
+//       await axios.post('https://web.api.saumic.com/api/register', values);
+//       message.success('Registration successful');
+//       form.resetFields(); // Reset the registration form fields
+//       setShowRegisterModal(false); // Close the modal after successful registration
+//     } catch (error) {
+//       message.error('Registration failed');
+//     }
+//   };
+
+//   const handleUpdate = async (values) => {
+//     try {
+//       await axios.post('https://web.api.saumic.com/api/updates', { ...values, images: fileList });
+//       message.success('Update added and emails sent successfully');
+//       updateForm.resetFields(); // Reset the update form fields
+//       setShowUpdateModal(false); // Close the modal after successful update
+//     } catch (error) {
+//       message.error('Failed to add update');
+//       setUpdateMessage('Failed to add update');
+//     }
+//   };
+
+//   const handleFileChange = ({ fileList }) => {
+//     setFileList(fileList);
+//   };
+
+//   return (
+//     <div className="regular-updates">
+//       <div className="header">
+//         <h1>Regular Updates</h1>
+//         <div className="button-group">
+//           <Button type="primary" onClick={() => setShowRegisterModal(true)}>
+//             Show Registration Form
+//           </Button>
+//           {userRole === 'admin' && (
+//             <Button type="primary" onClick={() => setShowUpdateModal(true)}>
+//               Add Update
+//             </Button>
+//           )}
+//         </div>
+//       </div>
+
+//       <Modal
+//         title="Registration Form"
+//         visible={showRegisterModal}
+//         onCancel={() => setShowRegisterModal(false)}
+//         footer={null}
+//         afterClose={() => form.resetFields()} // Reset form fields when modal is closed
+//       >
+//         <Form
+//           form={form}
+//           onFinish={handleRegister}
+//           layout="vertical"
+//           initialValues={{ remember: true }}
+//         >
+//           <Form.Item
+//             label="Email"
+//             name="email"
+//             rules={[{ required: true, message: 'Please enter your email!' }]}
+//           >
+//             <Input />
+//           </Form.Item>
+//           <Form.Item
+//             label="Name"
+//             name="name"
+//             rules={[{ required: true, message: 'Please enter your name!' }]}
+//           >
+//             <Input />
+//           </Form.Item>
+//           <Form.Item>
+//             <Button type="primary" htmlType="submit">
+//               Register
+//             </Button>
+//           </Form.Item>
+//         </Form>
+//       </Modal>
+
+//       <Modal
+//         title="Update Form"
+//         visible={showUpdateModal}
+//         onCancel={() => setShowUpdateModal(false)}
+//         footer={null}
+//         afterClose={() => updateForm.resetFields()} // Reset form fields when modal is closed
+//       >
+//         <Form
+//           form={updateForm}
+//           onFinish={handleUpdate}
+//           layout="vertical"
+//           initialValues={{ remember: true }}
+//         >
+//           <Form.Item
+//             label="Update Content"
+//             name="updateContent"
+//             rules={[{ required: true, message: 'Please enter update content!' }]}
+//           >
+//             <Input.TextArea />
+//           </Form.Item>
+//           <Form.Item>
+//             <Button type="primary" htmlType="submit">
+//               Add Update
+//             </Button>
+//           </Form.Item>
+//         </Form>
+//       </Modal>
+
+//       {updateMessage && <p>{updateMessage}</p>}
+//     </div>
+//   );
+// };
+
+// export default Regularupdates;
+
+
+
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Modal, Form, Input, Button, message, Upload } from 'antd';
@@ -183,6 +314,35 @@ const Regularupdates = ({ userRole }) => {
         </div>
       </div>
 
+      {/* Video Section */}
+      <div className="video-section">
+        <h2>Latest Videos</h2>
+        <div className="video-grid">
+          <iframe
+            src="https://drive.google.com/file/d/1n3v3HVSEB7PtmsHWzRqixQDub6pimrYX/preview"
+            title="Video 1"
+            className="video-frame"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
+          <iframe
+            src="https://drive.google.com/file/d/1zEy-ZvtNDKlaBJwVtGbfAiD9dD5K2q7t/preview"
+            title="Video 2"
+            className="video-frame"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
+          <iframe
+            src="https://drive.google.com/file/d/1PIgd3taccD8jHOCzjMtQI4ZAHWSYDh3U/preview"
+            title="Video 3"
+            className="video-frame"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
+        </div>
+      </div>
+
+      {/* Registration Form Modal */}
       <Modal
         title="Registration Form"
         visible={showRegisterModal}
@@ -218,6 +378,7 @@ const Regularupdates = ({ userRole }) => {
         </Form>
       </Modal>
 
+      {/* Update Form Modal */}
       <Modal
         title="Update Form"
         visible={showUpdateModal}
